@@ -1,52 +1,46 @@
 package pop.uz.wellguessapp;
 
+import android.widget.CheckBox;
+
 public class Question {
 
-    private int id, image ,correctAnswer ;
-    private String question, optionOne, optionTwo, optionThree, optionFour;
+    private int id, image ;
+    private String  correctAnswer;
+    private CheckBox checkBox1, checkBox2, checkBox3;
 
+    public CheckBox getCheckBox1() {
+        return checkBox1;
+    }
 
-    public Question(int id, String question, int image,
-                    String optionOne, String optionTwo, String optionThree, String optionFour, int correctAnswer) {
+    public CheckBox getCheckBox2() {
+        return checkBox2;
+    }
+
+    public CheckBox getCheckBox3() {
+        return checkBox3;
+    }
+
+    public Question(CheckBox checkBox1, CheckBox checkBox2, CheckBox checkBox3) {
+        this.checkBox1 = checkBox1;
+        this.checkBox2 = checkBox2;
+        this.checkBox3 = checkBox3;
+    }
+
+    public Question(int id, int image, String correctAnswer) {
         this.id = id;
         this.image = image;
         this.correctAnswer = correctAnswer;
-        this.question = question;
-        this.optionOne = optionOne;
-        this.optionTwo = optionTwo;
-        this.optionThree = optionThree;
-        this.optionFour = optionFour;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getQuestion() {
-        return question;
-    }
-
     public int getImage() {
         return image;
     }
 
-    public int getCorrectAnswer() {
+    public String getCorrectAnswer() {
         return correctAnswer;
-    }
-
-    public String getOptionOne() {
-        return optionOne;
-    }
-
-    public String getOptionTwo() {
-        return optionTwo;
-    }
-
-    public String getOptionThree() {
-        return optionThree;
-    }
-
-    public String getOptionFour() {
-        return optionFour;
     }
 }

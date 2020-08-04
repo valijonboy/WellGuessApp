@@ -5,115 +5,126 @@
     android:layout_height="match_parent"
     tools:context=".GuessQuestionActivity"
     android:fillViewport="true"
-    android:background="@drawable/guess_img">
+    android:background="@drawable/my_background">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/size_16dp"
-        android:gravity="center"
-        >
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/size_16dp">
 
-        <TextView
-            android:id="@+id/tv_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_10dp"
-            android:gravity="center"
-            android:textColor="@color/dark_grey"
-            android:textSize="22sp"
-            android:text="@string/well_guess_what_color_it_is"/>
+      <TextView
+          android:id="@+id/tv_question"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/guess_what_kind_of_animal"
+          android:textSize="@dimen/text_size_18sp"
+          android:gravity="center_horizontal"
+          android:textColor="@color/colorPrimaryDark"/>
 
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="236dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="@dimen/size_16dp"
-            android:src="@drawable/blue_color"
-            android:contentDescription="@string/todo" />
+      <ImageView
+          android:id="@+id/image_view"
+          android:layout_width="255dp"
+          android:layout_height="150dp"
+          android:src="@drawable/blue_color"
+          android:layout_below="@+id/tv_question"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="@dimen/size_16dp"/>
 
-        <LinearLayout
-            android:id="@+id/linear_progress_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_16dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+          <RadioGroup
+              android:id="@+id/radioGroup"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:layout_below="@+id/image_view"
+              android:layout_marginTop="@dimen/size_16dp"
+              android:weightSum="3">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minHeight="50dp"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:progress="0"
-                android:indeterminate="false"/>
+              <RadioButton
+                  android:id="@+id/rb_animal"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:text="@string/animal"
+                  android:textSize="14sp"
+                  android:textColor="@color/colorPrimaryDark"
+                  android:layout_weight="1"/>
 
-            <TextView
-                android:id="@+id/tv_progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="@dimen/size_16dp"
-                android:textColorHint="@color/grey"
-                android:textSize="14sp" />
-        </LinearLayout>
+              <RadioButton
+                  android:id="@+id/rb_bird"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:text="@string/bird"
+                  android:textSize="14sp"
+                  android:textColor="@color/colorPrimaryDark"
+                  android:layout_weight="1"/>
 
-       <RadioGroup
-           android:id="@+id/radio_group"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:padding="@dimen/size_16dp">
+              <RadioButton
+                  android:id="@+id/rb_insect"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:text="@string/insect"
+                  android:textSize="14sp"
+                  android:textColor="@color/colorPrimaryDark"
+                  android:layout_weight="1"/>
 
-           <RadioButton
-               android:id="@+id/rb_option_one"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="RED"
-               android:textStyle="bold"
-               android:textSize="@dimen/text_size_18sp"/>
+          </RadioGroup>
 
-           <RadioButton
-               android:id="@+id/rb_option_two"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="RED"
-               android:textStyle="bold"
-               android:textSize="@dimen/text_size_18sp"
-               android:layout_marginTop="@dimen/size_10dp"/>
+      <TextView
+          android:id="@+id/tv_checkBox"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/radioGroup"
+          android:layout_marginTop="@dimen/size_16dp"
+          android:text="@string/the_following_which_quality_is_suitable_for_them"
+          android:gravity="center_horizontal"
+          android:textSize="@dimen/text_size_18sp"
+          android:textColor="@color/colorPrimaryDark"/>
 
-           <RadioButton
-               android:id="@+id/rb_option_three"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="RED"
-               android:textStyle="bold"
-               android:textSize="@dimen/text_size_18sp"
-               android:layout_marginTop="@dimen/size_10dp"/>
+      <CheckBox
+          android:id="@+id/checkbox1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/flayeble"
+          android:textSize="14sp"
+          android:textColor="@color/black"
+          android:layout_below="@+id/tv_checkBox"
+          android:layout_marginTop="@dimen/size_20dp"/>
 
-           <RadioButton
-               android:id="@+id/rb_option_four"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="RED"
-               android:textStyle="bold"
-               android:textSize="@dimen/text_size_18sp"
-               android:layout_marginTop="@dimen/size_10dp"/>
-       </RadioGroup>
+      <CheckBox
+          android:id="@+id/checkbox2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/swimmable"
+          android:textSize="14sp"
+          android:textColor="@color/black"
+          android:layout_below="@+id/checkbox1"
+          android:layout_marginTop="@dimen/size_16dp"/>
 
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_10dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/submit"
-            android:textSize="@dimen/text_size_18sp"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+      <CheckBox
+          android:id="@+id/checkbox3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/runnable"
+          android:textSize="14sp"
+          android:textColor="@color/black"
+          android:layout_below="@+id/checkbox2"
+          android:layout_marginTop="@dimen/size_16dp"/>
 
-    </LinearLayout>
+      <Button
+          android:id="@+id/button_submit"
+          android:layout_width="150dp"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginBottom="@dimen/size_20dp"
+          android:text="@string/submit"
+          android:textSize="@dimen/text_size_22sp"
+          android:textStyle="bold"
+          android:textColor="@android:color/white"
+          android:background="@color/colorPrimary"
+          android:elevation="@dimen/size_10dp"
+          android:ellipsize="marquee"/>
+
+
+  </RelativeLayout>
 
 </ScrollView>
