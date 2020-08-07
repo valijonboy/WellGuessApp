@@ -1,36 +1,37 @@
 package pop.uz.wellguessapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import pop.uz.wellguessapp.databinding.ActivityMainBinding;
+
+import static pop.uz.wellguessapp.Constants.USER_NAME;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_start;
-    AppCompatEditText et_name;
+    private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        btn_start = findViewById(R.id.btn_start);
-        et_name = findViewById(R.id.et_name);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         showSystemUI();
 
-        btn_start.setOnClickListener(new View.OnClickListener() {
+        binding.btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (et_name.getText().toString().isEmpty()){
-                    Toast.makeText(MainActivity.this, getString(R.string.enter_name), Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent =  new Intent(MainActivity.this, GuessQuestionActivity.class);
-                    intent.putExtra(GuessQuestionActivity.USER_NAME, et_name.getText().toString());
+                if (binding.etName.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.enter_name), Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), GuessQuestionActivity.class);
+                    intent.putExtra(USER_NAME, binding.etName.getText().toString());
                     startActivity(intent);
                     finish();
                 }

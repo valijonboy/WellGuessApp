@@ -9,32 +9,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import pop.uz.wellguessapp.databinding.ActivityResultBinding;
+
+import static pop.uz.wellguessapp.Constants.CORRECT_ANSWERS;
+import static pop.uz.wellguessapp.Constants.INCORRECT_ANSWERS;
+import static pop.uz.wellguessapp.Constants.TOTAL_QUESTIONS;
+import static pop.uz.wellguessapp.Constants.USER_NAME;
+
 public class ResultActivity extends AppCompatActivity {
 
-    TextView tv_name, tv_score;
+    private ActivityResultBinding binding;
     String userName;
-    int totalQuestions, correctAnswers;
-    Button button_finish;
+    int totalQuestions, correctAnswers, incorrectAnswers;
+
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        binding = ActivityResultBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         showSystemUI();
-        tv_name = findViewById(R.id.tv_name);
-        tv_score = findViewById(R.id.tv_score);
-        button_finish = findViewById(R.id.button_finish);
 
-        userName = getIntent().getStringExtra(GuessQuestionActivity.USER_NAME);
-        tv_name.setText(userName);
+        userName = getIntent().getStringExtra(USER_NAME);
+        binding.tvName.setText(userName);
 
-        totalQuestions = getIntent().getIntExtra(GuessQuestionActivity.TOTAL_QUESTIONS, 0);
-        correctAnswers = getIntent().getIntExtra(GuessQuestionActivity.CORRECT_ANSWERS,0);
+        totalQuestions = getIntent().getIntExtra(TOTAL_QUESTIONS, 0);
+        correctAnswers = getIntent().getIntExtra(CORRECT_ANSWERS, 0);
+        incorrectAnswers = getIntent().getIntExtra(INCORRECT_ANSWERS, 0);
 
-        tv_score.setText(String.format("Your score is %d out of %d", correctAnswers, totalQuestions));
+        binding.tvScore.setText(String.format("Your score is %d out of %d", correctAnswers, totalQuestions));
 
-        button_finish.setOnClickListener(new View.OnClickListener() {
+        binding.buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ResultActivity.this, MainActivity.class));
@@ -42,6 +49,7 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
     }
+
     private void showSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
