@@ -3,7 +3,6 @@ package pop.uz.wellguessapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -46,7 +45,7 @@ public class GuessQuestionActivity extends AppCompatActivity {
         }
 
         setQuestion();
-        Question question = questionsList.get(questionId);
+        final Question question = questionsList.get(questionId);
         getObject(question);
 
         binding.buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -63,21 +62,24 @@ public class GuessQuestionActivity extends AppCompatActivity {
                         questionId++;
                         position++;
                     }
-                    Question question = questionsList.get(questionId);
-                    getObject(question);
+
+                    Question question1 = questionsList.get(questionId);
+                    getObject(question1);
                     checkAnswer();
+                    checkBoxAnswer(question);
                     checkBoxing();
 
                     binding.radioGroup.clearCheck();
                     questionId++;
                     position++;
 
-                } else if (position >= questionsList.size()) {
+                } else {
+                    questionsList.size();
 
                     Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                     intent.putExtra("user_name", mUserName);
-                    intent.putExtra("correct_answer", correct);
                     intent.putExtra("checkcorrect_answers", checkCorrect);
+                    intent.putExtra("correct_answer", correct);
                     intent.putExtra("total_question", questionsList.size());
                     startActivity(intent);
                     finish();
@@ -133,29 +135,36 @@ public class GuessQuestionActivity extends AppCompatActivity {
 
         answer = radio.getText().toString();
 
-        if (questionsList.get(0).getCorrectAnswer().equals(answer)) {
-            Log.i("TAG", "==== 1 ====");
+        if (questionsList.get(0).getCorrectAnswer().equals(answer))
             correct++;
-        } else if (!binding.checkbox1.isChecked() && binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
-            Log.i("TAG", "==== 2 ====");
-        checkCorrect++;
 
-        if (answer.equals(questionsList.get(1).getCorrectAnswer())) {
-            Log.i("TAG", "==== 3 ====");
+        if (answer.equals(questionsList.get(1).getCorrectAnswer()))
             correct++;
-        } else if (binding.checkbox1.isChecked() && !binding.checkbox2.isChecked() && !binding.checkbox3.isChecked())
-            Log.i("TAG", "==== 4 ====");
-        checkCorrect++;
 
-        if (answer.equals(questionsList.get(2).getCorrectAnswer())) {
+        if (answer.equals(questionsList.get(2).getCorrectAnswer()))
             correct++;
-        } else if (!binding.checkbox1.isChecked() && binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
-            checkCorrect++;
 
-        if (answer.equals(questionsList.get(3).getCorrectAnswer())) {
+        if (answer.equals(questionsList.get(3).getCorrectAnswer()))
             correct++;
-        } else if (!binding.checkbox1.isChecked() && !binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
-            checkCorrect++;
 
+
+    }
+
+    private void checkBoxAnswer(Question question) {
+        switch (question.getId()) {
+            case 0:
+            case 2:
+                if (!binding.checkbox1.isChecked() && binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
+                    checkCorrect++;
+                break;
+            case 1:
+                if (binding.checkbox1.isChecked() && !binding.checkbox2.isChecked() && !binding.checkbox3.isChecked())
+                    checkCorrect++;
+                break;
+            case 3:
+                if (!binding.checkbox1.isChecked() && !binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
+                    checkCorrect++;
+                break;
+        }
     }
 }

@@ -39,7 +39,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
         binding.tvScore.setText(String.format("Your score is %d out of %d", correctAnswers, totalQuestions));
-        binding.tvCheckScore.setText(String.format("Your checkscore is %d out of %d", checkcorrectAnswers, 6));
+        binding.tvCheckScore.setText(String.format("Your checkscore is %d out of %d", checkcorrectAnswers, totalQuestions));
 
         binding.buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
