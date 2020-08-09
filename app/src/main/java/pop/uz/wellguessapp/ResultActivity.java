@@ -1,18 +1,16 @@
 package pop.uz.wellguessapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import pop.uz.wellguessapp.databinding.ActivityResultBinding;
 
+import static pop.uz.wellguessapp.Constants.CHECKCORRECT_ANSWERS;
 import static pop.uz.wellguessapp.Constants.CORRECT_ANSWERS;
-import static pop.uz.wellguessapp.Constants.INCORRECT_ANSWERS;
 import static pop.uz.wellguessapp.Constants.TOTAL_QUESTIONS;
 import static pop.uz.wellguessapp.Constants.USER_NAME;
 
@@ -20,7 +18,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private ActivityResultBinding binding;
     String userName;
-    int totalQuestions, correctAnswers, incorrectAnswers;
+    int totalQuestions, correctAnswers, checkcorrectAnswers;
 
     @SuppressLint("DefaultLocale")
     @Override
@@ -37,9 +35,11 @@ public class ResultActivity extends AppCompatActivity {
 
         totalQuestions = getIntent().getIntExtra(TOTAL_QUESTIONS, 0);
         correctAnswers = getIntent().getIntExtra(CORRECT_ANSWERS, 0);
-        incorrectAnswers = getIntent().getIntExtra(INCORRECT_ANSWERS, 0);
+        checkcorrectAnswers = getIntent().getIntExtra(CHECKCORRECT_ANSWERS, 0);
+
 
         binding.tvScore.setText(String.format("Your score is %d out of %d", correctAnswers, totalQuestions));
+        binding.tvCheckScore.setText(String.format("Your checkscore is %d out of %d", checkcorrectAnswers, 6));
 
         binding.buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override

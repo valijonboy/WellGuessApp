@@ -3,8 +3,8 @@ package pop.uz.wellguessapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -14,9 +14,6 @@ import java.util.ArrayList;
 
 import pop.uz.wellguessapp.databinding.ActivityGuessQuestionBinding;
 
-import static pop.uz.wellguessapp.Constants.CORRECT_ANSWERS;
-import static pop.uz.wellguessapp.Constants.INCORRECT_ANSWERS;
-import static pop.uz.wellguessapp.Constants.TOTAL_QUESTIONS;
 import static pop.uz.wellguessapp.Constants.USER_NAME;
 
 public class GuessQuestionActivity extends AppCompatActivity {
@@ -28,8 +25,8 @@ public class GuessQuestionActivity extends AppCompatActivity {
     int questionId = -1;
     public String mUserName = null;
     public int correct = 0;
+    int checkCorrect = 0;
     String answer;
-    private int incorrect = 0;
 
     private ActivityGuessQuestionBinding binding;
 
@@ -68,19 +65,20 @@ public class GuessQuestionActivity extends AppCompatActivity {
                     }
                     Question question = questionsList.get(questionId);
                     getObject(question);
+                    checkAnswer();
                     checkBoxing();
-                    checkAnswer(question);
 
                     binding.radioGroup.clearCheck();
                     questionId++;
                     position++;
-                } else {
-                    questionsList.size();
-                    Intent intent = new Intent(context, ResultActivity.class);
-                    intent.putExtra(USER_NAME, mUserName);
-                    intent.putExtra(CORRECT_ANSWERS, correct);
-                    intent.putExtra(INCORRECT_ANSWERS, incorrect);
-                    intent.putExtra(TOTAL_QUESTIONS, questionsList.size());
+
+                } else if (position >= questionsList.size()) {
+
+                    Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                    intent.putExtra("user_name", mUserName);
+                    intent.putExtra("correct_answer", correct);
+                    intent.putExtra("checkcorrect_answers", checkCorrect);
+                    intent.putExtra("total_question", questionsList.size());
                     startActivity(intent);
                     finish();
                 }
@@ -90,7 +88,7 @@ public class GuessQuestionActivity extends AppCompatActivity {
 
     private void setQuestion() {
 
-        Question bear = new Question(0, R.drawable.white_bear,"ANIMAL");
+        Question bear = new Question(0, R.drawable.white_bear, "ANIMAL");
         Question eagle = new Question(1, R.drawable.eagle, "BIRD");
         Question hippopotamus = new Question(2, R.drawable.begemot, "ANIMAL");
         Question straus = new Question(3, R.drawable.straus, "BIRD");
@@ -112,29 +110,52 @@ public class GuessQuestionActivity extends AppCompatActivity {
 
         if (binding.checkbox1.isChecked()) {
             checkBoxChoices += binding.checkbox1.getText().toString() + "\tYES\n";
+            binding.checkbox1.setChecked(false);
         } else {
             checkBoxChoices += binding.checkbox1.getText().toString() + "\tNO\n";
         }
         if (binding.checkbox2.isChecked()) {
             checkBoxChoices += binding.checkbox2.getText().toString() + "\tYES\n";
+            binding.checkbox2.setChecked(false);
         } else {
             checkBoxChoices += binding.checkbox2.getText().toString() + "\tNO\n";
         }
         if (binding.checkbox3.isChecked()) {
             checkBoxChoices += binding.checkbox3.getText().toString() + "\tYES\n";
+            binding.checkbox3.setChecked(false);
         } else {
             checkBoxChoices += binding.checkbox3.getText().toString() + "\tNO\n";
         }
         Toast.makeText(context, "Selected RadioButton is:" + yourVote + "\n CheckBox Choices: \n " + checkBoxChoices, Toast.LENGTH_LONG).show();
     }
 
-    private void checkAnswer(Question question) {
-        answer = radio.getText().toString();
-        if (answer.equals(question.getCorrectAnswer())) {
-            correct++;
-        } else {
-            incorrect++;
-        }
-    }
+    private void checkAnswer() {
 
+        answer = radio.getText().toString();
+
+        if (questionsList.get(0).getCorrectAnswer().equals(answer)) {
+            Log.i("TAG", "==== 1 ====");
+            correct++;
+        } else if (!binding.checkbox1.isChecked() && binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
+            Log.i("TAG", "==== 2 ====");
+        checkCorrect++;
+
+        if (answer.equals(questionsList.get(1).getCorrectAnswer())) {
+            Log.i("TAG", "==== 3 ====");
+            correct++;
+        } else if (binding.checkbox1.isChecked() && !binding.checkbox2.isChecked() && !binding.checkbox3.isChecked())
+            Log.i("TAG", "==== 4 ====");
+        checkCorrect++;
+
+        if (answer.equals(questionsList.get(2).getCorrectAnswer())) {
+            correct++;
+        } else if (!binding.checkbox1.isChecked() && binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
+            checkCorrect++;
+
+        if (answer.equals(questionsList.get(3).getCorrectAnswer())) {
+            correct++;
+        } else if (!binding.checkbox1.isChecked() && !binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
+            checkCorrect++;
+
+    }
 }
