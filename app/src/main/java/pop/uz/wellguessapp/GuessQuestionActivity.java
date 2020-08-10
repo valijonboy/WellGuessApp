@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+
 import pop.uz.wellguessapp.databinding.ActivityGuessQuestionBinding;
 
 import static pop.uz.wellguessapp.Constants.USER_NAME;
@@ -20,8 +21,7 @@ public class GuessQuestionActivity extends AppCompatActivity {
     RadioButton radio;
     Context context;
     ArrayList<Question> questionsList = new ArrayList<>();
-    int position = 0;
-    int questionId = -1;
+    int questionId = 0;
     public String mUserName = null;
     public int correct = 0;
     int checkCorrect = 0;
@@ -39,10 +39,6 @@ public class GuessQuestionActivity extends AppCompatActivity {
         context = this;
 
         mUserName = getIntent().getStringExtra(USER_NAME);
-        if (getIntent() != null) {
-            questionId = 0;
-            position = 1;
-        }
 
         setQuestion();
         final Question question = questionsList.get(questionId);
@@ -55,34 +51,30 @@ public class GuessQuestionActivity extends AppCompatActivity {
                 radio = findViewById(binding.radioGroup.getCheckedRadioButtonId());
 
                 if (radio == null) {
-                    Toast.makeText(context, "Please, select your answer!", Toast.LENGTH_SHORT).show();
-                } else if (position <= questionsList.size() && radio != null) {
+                    Toast.makeText(context, R.string.select_answer, Toast.LENGTH_SHORT).show();
+                } else if (questionId < questionsList.size() && radio != null) {
 
-                    if (position == 1) {
-                        questionId++;
-                        position++;
-                    }
-
-                    Question question1 = questionsList.get(questionId);
-                    getObject(question1);
-                    checkAnswer();
-                    checkBoxAnswer(question);
+                    checkAnswer(questionId);
+                    checkBoxAnswer(questionId);
                     checkBoxing();
 
                     binding.radioGroup.clearCheck();
                     questionId++;
-                    position++;
 
-                } else {
-                    questionsList.size();
+                    if (questionId < questionsList.size()) {
+                        Question question1 = questionsList.get(questionId);
+                        getObject(question1);
 
-                    Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-                    intent.putExtra("user_name", mUserName);
-                    intent.putExtra("checkcorrect_answers", checkCorrect);
-                    intent.putExtra("correct_answer", correct);
-                    intent.putExtra("total_question", questionsList.size());
-                    startActivity(intent);
-                    finish();
+                    } else {
+
+                        Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                        intent.putExtra("user_name", mUserName);
+                        intent.putExtra("checkcorrect_answers", checkCorrect);
+                        intent.putExtra("correct_answer", correct);
+                        intent.putExtra("total_question", questionsList.size());
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
         });
@@ -91,9 +83,9 @@ public class GuessQuestionActivity extends AppCompatActivity {
     private void setQuestion() {
 
         Question bear = new Question(0, R.drawable.white_bear, "ANIMAL");
-        Question eagle = new Question(1, R.drawable.eagle, "BIRD");
+        Question eagle = new Question(1, R.drawable.duck, "BIRD");
         Question hippopotamus = new Question(2, R.drawable.begemot, "ANIMAL");
-        Question straus = new Question(3, R.drawable.straus, "BIRD");
+        Question straus = new Question(3, R.drawable.cricket_img, "INSECT");
 
         questionsList.add(bear);
         questionsList.add(eagle);
@@ -128,41 +120,38 @@ public class GuessQuestionActivity extends AppCompatActivity {
         } else {
             checkBoxChoices += binding.checkbox3.getText().toString() + "\tNO\n";
         }
-        Toast.makeText(context, "Selected RadioButton is:" + yourVote + "\n CheckBox Choices: \n " + checkBoxChoices, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, getString(R.string.selec_radio) + yourVote + getString(R.string.checkbox_chois) + checkBoxChoices, Toast.LENGTH_LONG).show();
     }
 
-    private void checkAnswer() {
+    private void checkAnswer(int questionId) {
 
         answer = radio.getText().toString();
 
-        if (questionsList.get(0).getCorrectAnswer().equals(answer))
+        if (questionsList.get(0).getCorrectAnswer().equals(answer) && questionId == 0)
             correct++;
 
-        if (answer.equals(questionsList.get(1).getCorrectAnswer()))
+        if (answer.equals(questionsList.get(1).getCorrectAnswer()) && questionId == 1)
             correct++;
 
-        if (answer.equals(questionsList.get(2).getCorrectAnswer()))
+        if (answer.equals(questionsList.get(2).getCorrectAnswer()) && questionId == 2)
             correct++;
 
-        if (answer.equals(questionsList.get(3).getCorrectAnswer()))
+        if (answer.equals(questionsList.get(3).getCorrectAnswer()) && questionId == 3)
             correct++;
 
 
     }
 
-    private void checkBoxAnswer(Question question) {
-        switch (question.getId()) {
+    private void checkBoxAnswer(int questionId) {
+        switch (questionId) {
             case 0:
             case 2:
                 if (!binding.checkbox1.isChecked() && binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
                     checkCorrect++;
                 break;
             case 1:
-                if (binding.checkbox1.isChecked() && !binding.checkbox2.isChecked() && !binding.checkbox3.isChecked())
-                    checkCorrect++;
-                break;
             case 3:
-                if (!binding.checkbox1.isChecked() && !binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
+                if (binding.checkbox1.isChecked() && binding.checkbox2.isChecked() && binding.checkbox3.isChecked())
                     checkCorrect++;
                 break;
         }

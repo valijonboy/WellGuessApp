@@ -22,4 +22,10 @@
     <string name="flayeble">FLAYEBLE</string>
     <string name="swimmable">SWIMMABLE</string>
     <string name="runnable">RUNNABLE</string>
+    <string name="select_answer">Please, select your answer!</string>
+    <string name="selec_radio">Selected RadioButton is:</string>
+    <string name="checkbox_chois">\"\n CheckBox Choices: \n \"</string>
+    <string name="your_checkscore_is_2_out_of_10">Your Checkscore is 2 out of 10</string>
+    <string name="your_score_is">Your score is %d out of %d</string>
+    <string name="your_checkbox_score">Your checkscore is %d out of %d</string>
 </resources>

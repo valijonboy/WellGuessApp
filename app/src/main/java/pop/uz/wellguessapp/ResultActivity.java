@@ -38,8 +38,8 @@ public class ResultActivity extends AppCompatActivity {
         checkcorrectAnswers = getIntent().getIntExtra(CHECKCORRECT_ANSWERS, 0);
 
 
-        binding.tvScore.setText(String.format("Your score is %d out of %d", correctAnswers, totalQuestions));
-        binding.tvCheckScore.setText(String.format("Your checkscore is %d out of %d", checkcorrectAnswers, totalQuestions));
+        binding.tvScore.setText(String.format(getString(R.string.your_score_is), correctAnswers, totalQuestions));
+        binding.tvCheckScore.setText(String.format(getString(R.string.your_checkbox_score), checkcorrectAnswers, totalQuestions));
 
         binding.buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
