@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 if (binding.etName.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), getString(R.string.enter_name), Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), GuessQuestionActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), EntryTextActivity.class);
                     intent.putExtra(USER_NAME, binding.etName.getText().toString());
                     startActivity(intent);
                     finish();

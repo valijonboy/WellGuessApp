@@ -1,11 +1,10 @@
-package pop.uz.wellguessapp;
+package pop.uz.wellguessapp.questions;
 
-public class Question {
-
+public class QuestionEntryText {
     private int id, image;
     private String correctAnswer;
 
-    public Question(int id, int image, String correctAnswer) {
+    public QuestionEntryText(int id, int image, String correctAnswer) {
         this.id = id;
         this.image = image;
         this.correctAnswer = correctAnswer;

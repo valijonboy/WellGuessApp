@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 
 import pop.uz.wellguessapp.databinding.ActivityGuessQuestionBinding;
+import pop.uz.wellguessapp.questions.Question;
 
 import static pop.uz.wellguessapp.Constants.USER_NAME;
 
@@ -28,6 +29,7 @@ public class GuessQuestionActivity extends AppCompatActivity {
     String answer;
 
     private ActivityGuessQuestionBinding binding;
+    EntryTextActivity entryTextActivity = new EntryTextActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,8 @@ public class GuessQuestionActivity extends AppCompatActivity {
                         intent.putExtra("checkcorrect_answers", checkCorrect);
                         intent.putExtra("correct_answer", correct);
                         intent.putExtra("total_question", questionsList.size());
+                        intent.putExtra("entrytext_answers", entryTextActivity.answersList.size());
+                        intent.putExtra("entrytotal_question", entryTextActivity.entryQuestionList.size());
                         startActivity(intent);
                         finish();
                     }

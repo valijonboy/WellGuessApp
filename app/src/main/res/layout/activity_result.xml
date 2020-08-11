@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="375dp"
-        android:layout_height="341dp"
+        android:layout_width="331dp"
+        android:layout_height="266dp"
         android:layout_marginTop="@dimen/size_10dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/congratul_img" />
@@ -63,6 +63,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10dp"
         android:text="@string/your_checkscore_is_2_out_of_10"
+        android:textColor="@android:color/secondary_text_dark"
+        android:textSize="@dimen/text_size_20sp" />
+
+    <TextView
+        android:id="@+id/tv_entryTextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10dp"
+        android:text="@string/your_entrytext_score"
         android:textColor="@android:color/secondary_text_dark"
         android:textSize="@dimen/text_size_20sp" />
 
