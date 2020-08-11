@@ -67,7 +67,7 @@ public class EntryTextActivity extends AppCompatActivity {
 
 
                     } else if (questionId == entryQuestionList.size()) {
-                        Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), GuessQuestionActivity.class);
                         intent.putExtra("user_name", mUserName);
                         intent.putExtra("entrytext_answers", correctAnswer);
                         intent.putExtra("entrytotal_question", entryQuestionList.size());
