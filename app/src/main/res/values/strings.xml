@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">WellGuessApp</string>
+    <string name="app_name">Guess</string>
     <string name="enter_name">Please enter your name</string>
     <string name="guessapp">GuessApp</string>
     <string name="welcome">Welcome</string>
@@ -30,4 +30,5 @@
     <string name="your_checkbox_score">Your checkscore is %d out of %d</string>
     <string name="enter_your_answer">"Please, enter your answer!</string>
     <string name="your_entrytext_score">Your EntryText score is %d out of %d</string>
+    <string name="guess_what_kind_of_fruit">Guess what kind of fruit?</string>
 </resources>

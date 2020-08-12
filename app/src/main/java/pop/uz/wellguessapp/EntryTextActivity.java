@@ -28,7 +28,6 @@ public class EntryTextActivity extends AppCompatActivity {
     private ActivityEntryTextBinding binding;
 
     ArrayList<QuestionEntryText> entryQuestionList;
-    List<Integer> answersList;
     String answer;
     public String mUserName = null;
     int correctAnswer = 0;
@@ -43,7 +42,6 @@ public class EntryTextActivity extends AppCompatActivity {
 
         mUserName = getIntent().getStringExtra(USER_NAME);
         entryQuestionList = new ArrayList<>();
-        answersList = new ArrayList<>();
 
         setQuestions();
         QuestionEntryText question = entryQuestionList.get(questionId);
@@ -54,7 +52,7 @@ public class EntryTextActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (binding.etFruit.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please, enter your answer!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getText(R.string.enter_your_answer), Toast.LENGTH_SHORT).show();
                 } else if (questionId < entryQuestionList.size()) {
                     entryTextAnswer(questionId);
 
@@ -148,7 +146,6 @@ public class EntryTextActivity extends AppCompatActivity {
                 break;
 
         }
-        answersList.add(correctAnswer);
     }
 
     @SuppressLint("SetTextI18n")

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_background"
+    android:fillViewport="true"
+    tools:context=".GuessQuestionActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_16dp">
+
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/guess_what_kind_of_animal"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_18sp" />
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="255dp"
+            android:layout_height="110dp"
+            android:layout_below="@+id/tv_question"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/size_16dp"
+            android:src="@drawable/white_bear" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            android:layout_marginTop="@dimen/size_16dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <RadioButton
+                android:id="@+id/rb_animal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/animal"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_bird"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bird"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_insect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/insect"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioGroup"
+            android:layout_marginTop="@dimen/size_16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/the_following_which_quality_is_suitable_for_them"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_18sp" />
+
+        <CheckBox
+            android:id="@+id/checkbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_checkBox"
+            android:layout_marginTop="@dimen/size_20dp"
+            android:text="@string/flayeble"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/checkbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox1"
+            android:layout_marginTop="@dimen/size_16dp"
+            android:text="@string/swimmable"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/checkbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox2"
+            android:layout_marginTop="@dimen/size_16dp"
+            android:text="@string/runnable"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/button_submit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/size_20dp"
+            android:background="@color/colorPrimary"
+            android:elevation="@dimen/size_10dp"
+            android:ellipsize="marquee"
+            android:text="@string/submit"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

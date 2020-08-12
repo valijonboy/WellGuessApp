@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/guess_img"
-    android:padding="@dimen/size_20dp"
+    android:padding="@dimen/size_10dp"
     tools:context=".ResultActivity">
 
 
@@ -21,19 +21,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.02"/>
+        app:layout_constraintVertical_bias="0.001"/>
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="331dp"
-        android:layout_height="266dp"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/congratul_img"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.159"/>
+        app:layout_constraintVertical_bias="0.15"/>
 
     <TextView
         android:id="@+id/tv_congratulations"
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.54"/>
+        app:layout_constraintVertical_bias="0.4"/>
 
     <TextView
         android:id="@+id/tv_name"
@@ -61,7 +61,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.62"/>
+        app:layout_constraintVertical_bias="0.5"/>
 
     <TextView
         android:id="@+id/tv_score"
@@ -74,7 +74,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.69"/>
+        app:layout_constraintVertical_bias="0.59"/>
 
     <TextView
         android:id="@+id/tv_checkScore"
@@ -87,7 +87,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.74"/>
+        app:layout_constraintVertical_bias="0.67"/>
 
     <TextView
         android:id="@+id/tv_entryTextScore"
@@ -100,11 +100,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.81"/>
+        app:layout_constraintVertical_bias="0.75"/>
 
     <Button
         android:id="@+id/button_finish"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:text="@string/finish"

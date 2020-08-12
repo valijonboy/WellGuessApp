@@ -14,7 +14,10 @@ import java.util.ArrayList;
 
 import pop.uz.wellguessapp.databinding.ActivityGuessQuestionBinding;
 import pop.uz.wellguessapp.questions.Question;
+import pop.uz.wellguessapp.questions.QuestionEntryText;
 
+import static pop.uz.wellguessapp.Constants.ENTRYTEXT_ANSWERS;
+import static pop.uz.wellguessapp.Constants.ENTRYTOTAL_QUESTIONS;
 import static pop.uz.wellguessapp.Constants.USER_NAME;
 
 public class GuessQuestionActivity extends AppCompatActivity {
@@ -27,9 +30,11 @@ public class GuessQuestionActivity extends AppCompatActivity {
     public int correct = 0;
     int checkCorrect = 0;
     String answer;
+    int correctAnswer = 0;
+    int entryTotalQuestions;
 
     private ActivityGuessQuestionBinding binding;
-    EntryTextActivity entryTextActivity = new EntryTextActivity();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,8 @@ public class GuessQuestionActivity extends AppCompatActivity {
         context = this;
 
         mUserName = getIntent().getStringExtra(USER_NAME);
+        correctAnswer = getIntent().getIntExtra(ENTRYTEXT_ANSWERS, 0);
+        entryTotalQuestions = getIntent().getIntExtra(ENTRYTOTAL_QUESTIONS, 0);
 
         setQuestion();
         final Question question = questionsList.get(questionId);
@@ -70,12 +77,13 @@ public class GuessQuestionActivity extends AppCompatActivity {
                     } else {
 
                         Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+
                         intent.putExtra("user_name", mUserName);
                         intent.putExtra("checkcorrect_answers", checkCorrect);
                         intent.putExtra("correct_answer", correct);
                         intent.putExtra("total_question", questionsList.size());
-                        intent.putExtra("entrytext_answers", entryTextActivity.answersList.size());
-                        intent.putExtra("entrytotal_question", entryTextActivity.entryQuestionList.size());
+                        intent.putExtra("entrytext_answers", correctAnswer);
+                        intent.putExtra("entrytotal_question", entryTotalQuestions);
                         startActivity(intent);
                         finish();
                     }

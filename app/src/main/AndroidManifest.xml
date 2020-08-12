@@ -4,26 +4,23 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_quizapp"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_quizapp_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".EntryTextActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".ResultActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".GuessQuestionActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
+
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
